@@ -68,3 +68,32 @@ var newInv = [
 ];
 
 console.log(updateInventory(curInv, newInv));
+
+// ------------------------------------------------------------------------------------------------
+
+/* Permutation Algorithm*/
+let heapAlgorithm = (arr) => {
+  let permutations = [];
+
+  let swap = (idx1, idx2) => {
+    let tmp = arr[idx1];
+    arr[idx1] = arr[idx2];
+    arr[idx2] = tmp;
+  };
+
+  let generate = (int) => {
+    if (int === 1) {
+      permutations.push(arr.join(""));
+    } else {
+      for (var i = 0; i != int; i++) {
+        generate(int - 1);
+        swap(int % 2 ? 0 : i, int - 1);
+      }
+    }
+  };
+
+  generate(arr.length);
+  return permutations;
+};
+
+heapAlgorithm(["1", "2", "3"]);
