@@ -97,3 +97,30 @@ let heapAlgorithm = (arr) => {
 };
 
 heapAlgorithm(["1", "2", "3"]);
+
+// ------------------------------------------------------------------------------------------------
+
+/* Given an array arr, find element pairs whose sum equal the second argument arg and return
+the sum of their indices. 
+
+EX: pairwise([7, 9, 11, 13, 15], 20) ---> 6 */
+let pairwise = (arr, arg) => {
+  // Array of pair indices.
+  let pairs = [];
+
+  // loop through each pair combination
+  for (var i = 0; i < arr.length - 1; i++) {
+    for (var j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] == arg) {
+        pairs.push(i, j);
+        // change val to not be used twice
+        arr[i] = undefined;
+        arr[j] = undefined;
+      }
+    }
+  }
+  // sum of pairs
+  return pairs.reduce((acc, pair) => acc + pair, 0);
+};
+
+console.log(pairwise([1, 1, 1], 2));
