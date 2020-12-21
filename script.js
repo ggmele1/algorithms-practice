@@ -67,7 +67,7 @@ var newInv = [
   [7, "Toothpaste"],
 ];
 
-console.log(updateInventory(curInv, newInv));
+updateInventory(curInv, newInv);
 
 // ------------------------------------------------------------------------------------------------
 
@@ -123,4 +123,47 @@ let pairwise = (arr, arg) => {
   return pairs.reduce((acc, pair) => acc + pair, 0);
 };
 
-console.log(pairwise([1, 1, 1], 2));
+pairwise([1, 1, 1], 2);
+
+// ------------------------------------------------------------------------------------------------
+
+/* Sort integers in order from least to greatest without .sort() method */
+
+function bubbleSort(array) {
+  // swaps adjacent integers
+  let swap = (a, b, arr) => {
+    let tmp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = tmp;
+  };
+
+  for (var i = 0; i < array.length; i++) {
+    // Sorts largest integers. Only loops over non sorted integers (array.length - 1 - i)
+    for (var j = 0; j < array.length - 1 - i; j++) {
+      if (array[j] > array[j + 1]) {
+        swap(j, j + 1, array);
+      }
+    }
+  }
+  return array;
+}
+
+bubbleSort([
+  5,
+  4,
+  2,
+  8,
+  345,
+  123,
+  43,
+  32,
+  5643,
+  63,
+  123,
+  43,
+  2,
+  55,
+  1,
+  234,
+  92,
+]);
