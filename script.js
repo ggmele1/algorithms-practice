@@ -72,6 +72,7 @@ updateInventory(curInv, newInv);
 // ------------------------------------------------------------------------------------------------
 
 /* Permutation Algorithm*/
+
 let heapAlgorithm = (arr) => {
   let permutations = [];
 
@@ -126,8 +127,11 @@ let pairwise = (arr, arg) => {
 pairwise([1, 1, 1], 2);
 
 // ------------------------------------------------------------------------------------------------
+/* SORTING ALGORITHMS: Sort from least to greatest without .sort() method  */
+// ------------------------------------------------------------------------------------------------
 
-/* Sort integers in order from least to greatest without .sort() method */
+/* Bubble Sort: Starts at the beginning of an unsorted array and 'bubbles up' unsorted values
+towards the end, iterating through the array until it is completely sorted.  */
 
 function bubbleSort(array) {
   // swaps adjacent integers
@@ -150,6 +154,53 @@ function bubbleSort(array) {
 
 bubbleSort([
   5,
+  4,
+  2,
+  8,
+  345,
+  123,
+  43,
+  32,
+  5643,
+  63,
+  123,
+  43,
+  2,
+  55,
+  1,
+  234,
+  92,
+]);
+
+// ------------------------------------------------------------------------------------------------
+
+/* Selection Sort: Works by selecting the minimum value in a list and swapping it with the
+first value (i) in the list. */
+function selectionSort(array) {
+  // pushes < value to position i
+  let swap = (arr, pos1, pos2) => {
+    let tmp = arr[pos2];
+    let newArr = [...arr];
+
+    delete newArr[pos2];
+    newArr = newArr.filter((n) => n);
+
+    newArr.splice(pos1, 0, tmp);
+    array = newArr;
+  };
+
+  for (var i = 0; i < array.length; i++) {
+    for (var j = 1 + i; j < array.length; j++) {
+      if (array[i] > array[j]) {
+        swap(array, i, j);
+      }
+    }
+  }
+  return array;
+}
+
+selectionSort([
+  3,
   4,
   2,
   8,
