@@ -218,3 +218,30 @@ selectionSort([
   234,
   92,
 ]);
+
+// ------------------------------------------------------------------------------------------------
+
+function Node(value) {
+  this.value = value;
+  this.next = null;
+}
+
+let head = new Node(10);
+head.next = new Node(25);
+head.next.next = new Node(46);
+console.log(head);
+
+const reverseList = (head) => {
+  let prev = null;
+  let next = null;
+
+  while (head !== null) {
+    next = head.next;
+    head.next = prev;
+    prev = head;
+    head = next;
+  }
+  return prev;
+};
+
+console.log(reverseList(head));
