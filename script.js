@@ -17,7 +17,7 @@ function sym(args) {
 
 sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]);
 
-// ------------------------------------------------------------------------------------------------
+// -------------
 
 /* QUESTION: 
 Compare and update the inventory stored in a 2D array against a second 2D array of a fresh delivery.
@@ -69,7 +69,7 @@ var newInv = [
 
 updateInventory(curInv, newInv);
 
-// ------------------------------------------------------------------------------------------------
+// -------------
 
 /* Permutation Algorithm*/
 
@@ -99,7 +99,7 @@ let heapAlgorithm = (arr) => {
 
 heapAlgorithm(["1", "2", "3"]);
 
-// ------------------------------------------------------------------------------------------------
+// -------------
 
 /* Given an array arr, find element pairs whose sum equal the second argument arg and return
 the sum of their indices. 
@@ -172,7 +172,7 @@ bubbleSort([
   92,
 ]);
 
-// ------------------------------------------------------------------------------------------------
+// -------------
 
 /* Selection Sort: Works by selecting the minimum value in a list and swapping it with the
 first value (i) in the list. */
@@ -219,7 +219,7 @@ selectionSort([
   92,
 ]);
 
-// ------------------------------------------------------------------------------------------------
+// -------------
 
 function Node(value) {
   this.value = value;
@@ -245,3 +245,54 @@ const reverseList = (head) => {
 };
 
 console.log(reverseList(head));
+
+// ------------------------------------------------------------------------------------------------
+/* Recursive Functions   */
+// ------------------------------------------------------------------------------------------------
+
+// Parse integers in multidimensional array
+const contains = (arr) => {
+  if (arr.length === 0) return 0;
+
+  let total = 0;
+  let first = arr.shift();
+
+  if (Array.isArray(first)) {
+    total += contains(first);
+  } else if (Number.isInteger(first)) {
+    total += 1;
+  }
+  return total + contains(arr);
+};
+
+console.log(contains([[[5], 3], 0, 2, ["foo"], [], [4, [5, 6]]])); // ---> 7
+
+// -------------
+
+// Sum the squares of numbers in nested array
+const sumSquares = (arr) => {
+  if (arr.length === 0) return 0;
+
+  let total = 0;
+
+  for (var i in arr) {
+    if (Array.isArray(arr[i])) {
+      total += sumSquares(arr[i]);
+    } else {
+      total += arr[i] ** 2;
+    }
+  }
+  return total;
+};
+
+console.log(sumSquares([10, [[10], 10], [10]])); // ---> 400
+
+// -------------
+
+//
+const replicate = (amount, num) => {
+  if (amount <= 0) return [];
+
+  return [num].concat(replicate(amount - 1, num));
+};
+console.log(replicate(3, 5)); // ---> [5,5,5]
