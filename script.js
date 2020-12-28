@@ -126,6 +126,44 @@ let pairwise = (arr, arg) => {
 
 pairwise([1, 1, 1], 2);
 
+// -------------
+
+// Roman Numeral Converter
+let convertToRoman = (num) => {
+  let symbols = [
+    [1, "I"],
+    [4, "IV"],
+    [5, "V"],
+    [9, "IX"],
+    [10, "X"],
+    [40, "XL"],
+    [50, "L"],
+    [90, "XC"],
+    [100, "C"],
+    [400, "CD"],
+    [500, "D"],
+    [900, "CM"],
+    [1000, "M"],
+  ];
+  let roman = "";
+  var remainder = num;
+
+  // returns the set with largest number that fits into param
+  let largest = (remainder) => {
+    let filtered = symbols.filter((item) => item[0] <= remainder);
+    return filtered[filtered.length - 1];
+  };
+
+  // subtracts largest from remainder and adds corresponding roman symbol to string
+  while (remainder !== 0) {
+    roman += largest(remainder)[1];
+    remainder = remainder - largest(remainder)[0];
+  }
+
+  return roman;
+};
+console.log(convertToRoman(1999)); // ---> MCMXCIX
+
 // ------------------------------------------------------------------------------------------------
 /* SORTING ALGORITHMS: Sort from least to greatest without .sort() method  */
 // ------------------------------------------------------------------------------------------------
