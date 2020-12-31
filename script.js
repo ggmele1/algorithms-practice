@@ -259,30 +259,40 @@ selectionSort([
 
 // -------------
 
-function Node(value) {
-  this.value = value;
-  this.next = null;
-}
+// Merge Sort Array
+/*NOTES: 
+Step 1 Merge function - takes left and right. while lengths. 
+push first element of smaller to arr. return the arr, left, then right.
 
-let head = new Node(10);
-head.next = new Node(25);
-head.next.next = new Node(46);
-console.log(head);
+Step 2 Split and recursive function - split arr in half. base case return when one elem in arr.
+call merge function with sub arrays recursively
+*/
 
-const reverseList = (head) => {
-  let prev = null;
-  let next = null;
+const merge = (l, r) => {
+  let arr = [];
 
-  while (head !== null) {
-    next = head.next;
-    head.next = prev;
-    prev = head;
-    head = next;
+  while (l.length && r.length) {
+    if (l[0] < r[0]) {
+      arr.push(l.shift());
+    } else {
+      arr.push(r.shift());
+    }
   }
-  return prev;
+
+  return [...arr, ...l, ...r];
 };
 
-console.log(reverseList(head));
+const mergeSort = (arr) => {
+  const half = arr.length / 2;
+
+  if (arr.length < 2) {
+    return arr;
+  }
+  const left = arr.splice(0, half);
+  return merge(mergeSort(left), mergeSort(arr));
+};
+
+console.log(mergeSort([5, 10, 4, 2, 1, 9]));
 
 // ------------------------------------------------------------------------------------------------
 /* Recursive Functions   */
@@ -327,10 +337,40 @@ console.log(sumSquares([10, [[10], 10], [10]])); // ---> 400
 
 // -------------
 
-//
+// Print i outputs for n
 const replicate = (amount, num) => {
   if (amount <= 0) return [];
 
   return [num].concat(replicate(amount - 1, num));
 };
 console.log(replicate(3, 5)); // ---> [5,5,5]
+
+// ------------------------------------------------------------------------------------------------
+/* Data Structures   */
+// ------------------------------------------------------------------------------------------------
+
+// Reverse A Linked List
+function Node(value) {
+  this.value = value;
+  this.next = null;
+}
+
+let head = new Node(10);
+head.next = new Node(25);
+head.next.next = new Node(46);
+console.log(head);
+
+const reverseList = (head) => {
+  let prev = null;
+  let next = null;
+
+  while (head !== null) {
+    next = head.next;
+    head.next = prev;
+    prev = head;
+    head = next;
+  }
+  return prev;
+};
+
+console.log(reverseList(head));
